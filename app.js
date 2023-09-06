@@ -4,6 +4,8 @@ import bookRoute from './routes/book.js';
 
 /* Criando uma aplicação Express e salvando em uma variável */
 const app = express();
+/* Configurando a aplicação para utilizar JSON */
+app.use(express.json())
 
 /* Declarando a porta que aplicação usará */
 const port = 8000;
