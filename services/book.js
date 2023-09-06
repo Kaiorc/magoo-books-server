@@ -4,6 +4,17 @@
 import fs from 'fs';
 
 /* Função que lê o arquivo JSON e retorna os dados */
-export default function getAllBooks() {
+export function getAllBooks() {
     return JSON.parse(fs.readFileSync("./books.json"))
+}
+
+export function getBookById(id) {
+    const books = JSON.parse(fs.readFileSync("./books.json"))
+    
+    /* Variável que guarda o livro com o mesmo "id" fornecido */
+    /* O resultado sempre será apenas um elemento, já que um "id" deve */
+    /* ser sempre único. */
+    const filteredBook = books.filter(book => book.id === id)[0]
+
+    return filteredBook
 }
