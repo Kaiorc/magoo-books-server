@@ -1,7 +1,7 @@
 /* Os controladores são responsáveis pela lógica da aplicação, */
 /* coordenando que resposta deve ser retornada em cada situação. */
 
-import { getAllBooks, getBookById, insertBook, modifyBook } from '../services/book.js'
+import { getAllBooks, getBookById, insertBook, modifyBook, deleteBookById } from '../services/book.js'
 
 /* "req" é a request e "res" é a response, que é o que é devolvido quando chamado */
 export function getBooks(req, res) {
@@ -47,6 +47,17 @@ export function patchBook(req, res){
         const body = req.body
         modifyBook(body, id)
         res.send("Livro modificado com sucesso!")
+    } catch (error) {
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+export function deleteBook(req, res){
+    try {
+        const id = req.params.id
+        deleteBookById(id)
+        res.send("Livro deletado com sucesso!")
     } catch (error) {
         res.status(500)
         res.send(error.message)

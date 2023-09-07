@@ -56,3 +56,14 @@ export function modifyBook(modifications, id) {
 
     fs.writeFileSync("./books.json", JSON.stringify(currentBooks))
 }
+
+/* Função que lê o arquivo JSON e deleta o livro com o "id" fornecido*/
+export function deleteBookById(id) {
+    const currentBooks = JSON.parse(fs.readFileSync("./books.json"))
+
+    /* Variável que guarda apenas os livros com o "id" diferente do fornecido */
+    const filteredBooks = currentBooks.filter(book => book.id !== id)
+
+    /* Escrevendo o novo array de livros no arquivo JSON */
+    fs.writeFileSync("./books.json", JSON.stringify(filteredBooks))
+}
