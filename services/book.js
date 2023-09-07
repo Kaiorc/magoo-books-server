@@ -31,3 +31,28 @@ export function insertBook(newBook) {
     /* Escrevendo o novo array de livros no arquivo JSON */
     fs.writeFileSync("./books.json", JSON.stringify(newBookList))
 }
+
+/* Função que modifica dados de um livro já existente*/
+export function modifyBook(modifications, id) {
+    let currentBooks = JSON.parse(fs.readFileSync("./books.json"))
+
+    /* Variável que guarda o livro com o mesmo "id" fornecido */
+    const modifiedIndex = currentBooks.findIndex(book => book.id === id)
+
+    /* "currentBooks[modifiedIndex]" criará um objeto novo em um índice específico de livrosAtuais com todos */
+    /* os campos que existem neste último. Já o "modifications" consiste em um objeto que possui os campos com */
+    /* os dados a serem alterados. Quando realizamos o Spreading de "currentBooks[modifiedIndex]", examinamos */
+    /* todos os campos que este item possui e criamos um objeto para cada um deles. Já o Spreading de modifications */
+    /* compara os campos modificados com os objetos de "currentBooks". Caso exista um objeto compatível com o campo */
+    /* modificado, ele será substituído pelo conteúdo de "modifications",mantendo os outros campos inalterados. Caso */
+    /* não haja este objeto, um novo campo será criado. */
+    const modifiedContent = { ...currentBooks[modifiedIndex], ...modifications }
+
+    /* No final, o "modifiedContent" será um objeto que conterá tudo o que temos em "currentBooks" junto */
+    /* às modificações. Nosso "currentBooks" no "[modifiedIndex]" é o objeto que queremos modificar e */
+    /* que portanto deverá receber a mistura dos nossos dois valores — ou seja, o "modifiedContent". Com */
+    /* isso, conseguiremos editar apenas os valores modificados. */
+    currentBooks[modifiedIndex] = modifiedContent
+
+    fs.writeFileSync("./books.json", JSON.stringify(currentBooks))
+}

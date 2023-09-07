@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getBooks, getBook, postBook } from "../controllers/book.js";
+import { getBooks, getBook, postBook, patchLivro, patchBook } from "../controllers/book.js";
 
 /* Instanciando um Router */
 const router = Router();
@@ -14,9 +14,7 @@ router.get('/:id', getBook)
 
 router.post('/', postBook)
 
-router.patch('/', (req, res) => {
-    res.send("Uma requisição do tipo PATCH foi feita no book.js")
-})
+router.patch('/:id', patchBook)
 
 router.delete('/', (req, res) => {
     res.send("Uma requisição do tipo DELETE foi feita no book.js")

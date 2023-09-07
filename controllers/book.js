@@ -1,7 +1,7 @@
 /* Os controladores são responsáveis pela lógica da aplicação, */
 /* coordenando que resposta deve ser retornada em cada situação. */
 
-import { getAllBooks, getBookById, insertBook } from '../services/book.js'
+import { getAllBooks, getBookById, insertBook, modifyBook } from '../services/book.js'
 
 /* "req" é a request e "res" é a response, que é o que é devolvido quando chamado */
 export function getBooks(req, res) {
@@ -33,6 +33,20 @@ export function postBook(req, res) {
         insertBook(newBook)
         res.status(201)
         res.send("Livro adicionado com sucesso!")
+    } catch (error) {
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+/* Função que recebe os dados do livro a ser modificado e modifica um livro existente com */
+/* base em seu ID e nos dados fornecidos no corpo da requisição. */
+export function patchBook(req, res){
+    try {
+        const id = req.params.id
+        const body = req.body
+        modifyBook(body, id)
+        res.send("Livro modificado com sucesso!")
     } catch (error) {
         res.status(500)
         res.send(error.message)
