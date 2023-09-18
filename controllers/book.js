@@ -42,14 +42,14 @@ export function postBook(req, res) {
         /* Verificando se o "ID" e o "nome" foram fornecidos */
         /* Se "id" não está vazio & "nome" também, entra no bloco, */
         /* se não, gera uma resposta de status 422 (Unprocessable Entity) */
-        /* e devolve uma resposta "Dados inválidos: ID e nome são obrigatórios" */
-        if(req.body.id && req.body.nome){
+        /* e devolve uma resposta "Dados inválidos: ID e name são obrigatórios" */
+        if(req.body.id && req.body.name){
             insertBook(newBook)
             res.status(201)
             res.send("Livro adicionado com sucesso!")
         } else {
             res.status(422)
-            res.send("Dados inválidos: ID e nome são obrigatórios")
+            res.send('Dados inválidos: "ID" e "name" são obrigatórios')
         }
     } catch (error) {
         res.status(500)
@@ -72,7 +72,7 @@ export function patchBook(req, res){
             res.send("Livro modificado com sucesso!")
         } else {
             res.status(422)
-            res.send("ID inválido")
+            res.send('"ID" inválido')
         }
     } catch (error) {
         res.status(500)
@@ -92,7 +92,7 @@ export function deleteBook(req, res){
             res.send("Livro deletado com sucesso!")
         } else {
             res.status(422)
-            res.send("ID inválido")
+            res.send('"ID" inválido')
         }
     } catch (error) {
         res.status(500)
