@@ -1,6 +1,7 @@
 /* Importando o Express */
 import express from 'express';
 import bookRoute from './routes/book.js';
+import favoriteBooksRoute from './routes/favorites.js';
 import cors from 'cors';
 
 /* Criando uma aplicação Express e salvando em uma variável */
@@ -22,6 +23,7 @@ const port = 8000;
 /* Roteamento */
 /* O primeiro parâmetro é o path, ou seja, o caminho que a aplicação irá acessar */
 app.use('/livros', bookRoute);
+app.use('/favorites', favoriteBooksRoute);
 
 /* Observa as alterações na porta especificada */
 app.listen(port, () => {
