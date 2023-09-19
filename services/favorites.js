@@ -4,14 +4,14 @@
 import fs from 'fs';
 
 /* Função que lê o arquivo JSON de favoritos e retorna os dados */
-export function getAllFavorites() {
+export function getAllFavoriteBooks() {
     return JSON.parse(fs.readFileSync("./favorites.json"))
 }
 
 /* Função que escreve os dados do novo favorito no arquivo JSON */
 /* Como não é necessário inserir um novo livro por completo, pois ele já existe, */
 /* então a função recebe apenas o "id" */
-export function insertFavorite(id) {
+export function insertFavoriteBook(id) {
     const books = JSON.parse(fs.readFileSync("./books.json"))
     const favorites = JSON.parse(fs.readFileSync("./favorites.json"))
 
@@ -26,7 +26,7 @@ export function insertFavorite(id) {
 }
 
 /* Função que lê o arquivo JSON de favoritos e deleta o livro com o "id" fornecido */
-export function deleteFavoriteById(id) {
+export function deleteFavoriteBookById(id) {
     const currentBooks = JSON.parse(fs.readFileSync("./favorites.json"))
 
     /* Variável que guarda apenas os livros com o "id" diferente do fornecido */
