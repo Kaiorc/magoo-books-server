@@ -18,9 +18,7 @@ O front-end do projeto é uma aplicação React que consome esta API.
 
 ## Exibição do projeto completo
 
-```
 ![Página principal](magoo-books.png)
-```
 
 ## Estrutura do projeto
 ```
